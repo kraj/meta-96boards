@@ -60,7 +60,13 @@ do_compile() {
 
 do_deploy() {
     # Placeholder to be implemented in machine specific recipe
-    echo "placeholder, see recipe"
+
+    if [ -e ${EDK2_DIR}/atf/build/${UEFIMACHINE}/release/bl1.bin ] ; then 
+    	install -D -p -m0644 ${EDK2_DIR}/atf/build/${UEFIMACHINE}/release/bl1.bin ${DEPLOYDIR}/bl1.bin
+    fi
+    if [ -e ${EDK2_DIR}/atf/build/${UEFIMACHINE}/release/fip.bin ] ; then 
+    	install -D -p -m0644 ${EDK2_DIR}/atf/build/${UEFIMACHINE}/release/fip.bin ${DEPLOYDIR}/fip.bin
+    fi
 }
 
 PACKAGE_ARCH = "${MACHINE_ARCH}"
